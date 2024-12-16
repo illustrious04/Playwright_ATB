@@ -40,6 +40,7 @@ test('Test-5: Approch-2 Check Number of options in the dropdown', async({page})=
 test('Test-6: check presence of options/value in the dropdown', async({page})=>{
     await page.goto(url)
     const all_options_text_content = await page.locator('#country').textContent()
+
     await expect(all_options_text_content.includes('India')).toBeTruthy();
     console.log(all_options_text_content)
 
@@ -76,3 +77,7 @@ test('Select options from dropdown using loops.', async ({page})=>{
     await page.waitForTimeout(5000)
     await page.close()
 })
+
+
+
+
