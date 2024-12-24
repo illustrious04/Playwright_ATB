@@ -1,27 +1,27 @@
 import{test, expect} from '@playwright/test'
 const{POManager} = require('../pages/POManager')
 
+let productName = "ADIDAS ORIGINAL"
 
-test('Get all the Titles of the products', async ({page})=>{
-//----------Locators-------
-
-const email = 'suyashguha04@gmail.com'
-const password = 'Strong@1234'
-const productName = 'ZARA COAT 3'
+test(`End 2 End Product purchase flow of`, async ({page})=>{
 
 const poManager = new POManager(page);
 
 const loginpage = poManager.getLoginPage();
 await loginpage.gotoBrowser()
-await loginpage.validLogin(email,password);
+await loginpage.validLogin("suyashguha04@gmail.com", "Strong@1234");
 
 const dashboardpage = poManager.getDashboardPage();
 await dashboardpage.searchProduct(productName)
 await dashboardpage.navigateToCart()
-
-//console.log(order_ID)
+await page.pause();
 
 })
+
+
+
+
+
 
 
  
