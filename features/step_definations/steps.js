@@ -1,29 +1,27 @@
 const { When, Then, Given } = require('@cucumber/cucumber')
-const{POManager} = require('../../src/pages/POManager')
-const {test, expect, playwright} = require('@playwright/test')
+const {expect} = require('@playwright/test')
 
-Given('LOgin into the Ecommerce application with {email} and {password}', async function (string, string2) {
-const browser = await playwright.chrominum.launch();
-const context = await browser.newContext();
-const page = await context.newPage();
- this.poManager = new POManager(page);
-const loginpage = poManager.getLoginPage();
+
+
+Given('LOgin into the Ecommerce application with {string} and {string}',{timeout: 10*1000}, async function (email, password) {
+
+const loginpage = this.poManager.getLoginPage();
 await loginpage.gotoBrowser()
-await loginpage.validLogin(data.email,data.password);
+await loginpage.validLogin(email,password);
   });
 
-  When('Add the item {string} in to cart',async function (string) {
+  When('Add the item {string} in to cart',async function (productName) {
    
-    const dashboardpage = this.poManager.getDashboardPage();
-    await dashboardpage.searchProduct(data.productName)
-    await dashboardpage.navigateToCart()
+    this.dashboardpage = this.poManager.getDashboardPage();
+    await this.dashboardpage.searchProduct(productName)
+    await this.dashboardpage.navigateToCart()
   });
 
-  Then('verify that {string} is displayed in the cart.', async function (string) {
+  Then('verify that {string} is displayed in the cart.', async function (productName) {
     // Write code here that turns the phrase above into concrete actions
-    const dashboardpage = poManager.getDashboardPage();
-    await dashboardpage.searchProduct(data.productName)
-    await dashboardpage.navigateToCart()
+    this.dashboardpage = this.poManager.getDashboardPage();
+    await this.dashboardpage.searchProduct(productName)
+    await this.dashboardpage.navigateToCart()
   });
 
   // When('Enter valid details and place the order', function () {
@@ -35,3 +33,18 @@ await loginpage.validLogin(data.email,data.password);
   //   // Write code here that turns the phrase above into concrete actions
   //   return 'pending';
   // });
+
+  When('Add the item {string} in to cart',async function (productName) {
+   
+    this.dashboardpage = this.poManager.getDashboardPage();
+    await this.dashboardpage.searchProduct(productName)
+    await this.dashboardpage.navigateToCart()
+  });
+
+  Then('verify that {string} is displayed in the cart.', async function (productName) {
+    // Write code here that turns the phrase above into concrete actions
+    this.dashboardpage = this.poManager.getDashboardPage();
+    await this.dashboardpage.searchProduct(productName)
+    await this.dashboardpage.navigateToCart()
+  });
+ 
