@@ -4,8 +4,8 @@ const { on } = require('events');
 
 
 module.exports = defineConfig({
-  //testDir: './src/tests', 
-  testDir: './src/pomtests',
+  testDir: './src/tests', 
+  //testDir: './src/pomtests',
   retries:1,
   workers: 2,
 
